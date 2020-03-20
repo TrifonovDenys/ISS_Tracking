@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  padding: 15px 0px;
+  background: url(dark.jpg) center no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+#map {
+  height: 550px;
+  width: 65%;
+  padding: 30px;
+  border: 1px solid rgb(165, 161, 154);
+  border-radius: 10px
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+#out {
+  padding: 10px 5px;
+  border: 1px solid rgb(165, 161, 154);
+  width: 65%;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: rgb(235, 227, 219);
+}
+
+#hours {
+  border: 1px solid rgb(165, 161, 154);
+  border-radius: 10px;
+  width: 450px;
+  padding: 10px 5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: rgb(235, 227, 219);
+}
+
+#container {
+  width: 100%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+}
+.person{
+  /* border: 1px solid rgb(165, 161, 154); */
+  margin-bottom: 10px;
+}
+#people {
+
+  padding: 10px;
+  border: 1px solid rgb(165, 161, 154);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.name {
+  padding: 40px 10px 10px 10px;
+  border: 1px solid rgb(165, 161, 154);
+  width: 450px;
+  height: 550px;
+  overflow-y: auto;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 36px;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(235, 227, 219);
+}
+
+span{
+  font-size: 11px;
+}
