@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>ISS Tracker</title>
+  <script src="jquery-3.0.0.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="info">
+      <div id="out"></div>
+      <div id="hours">
+        <script language="JavaScript" type="text/javascript" src="date.js"></script>
+      </div>
+    </div>
+    <script src="js.js"> </script>
+    <div class="stats">
+      <div id="map"></div>
+      <div class="name">
+        <div id="people" class="people">
+        </div>
+      </div>
+    </div>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRamfMG3mZVAQ_dnzqj6adZxg5zn4Tfy4&callback=initMap">
+    </script>
+</body>
+</html>
