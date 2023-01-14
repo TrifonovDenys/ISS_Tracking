@@ -21,4 +21,4 @@ function wr_hours() {
 }
 
 wr_hours();
-setInterval("wr_hours();", 5000);
+setInterval("wr_hours();", 1000);

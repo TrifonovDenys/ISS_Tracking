@@ -41,7 +41,8 @@ function initMap() {
 // For fetch implementation of Google Maps. Not used.
 function fetchAPI() {
   const adress = "https://maps.googleapis.com/maps/api/js?key="
-  const apiKey = "AIzaSyBRamfMG3mZVAQ_dnzqj6adZxg5zn4Tfy4"
+  // const apiKey = "AIzaSyBRamfMG3mZVAQ_dnzqj6adZxg5zn4Tfy4"
+  const apiKey = "AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao"
   const callbackToGoogle = "&callback=initMap"
   return adress + apiKey + callbackToGoogle
 }
@@ -59,9 +60,10 @@ function getISSLocation() {
 
       if (XHR.readyState === 4 && XHR.status === 200) {
 
-        let latitude = JSON.parse(XHR.responseText).latitude.toFixed(3)
-        let longitude = JSON.parse(XHR.responseText).longitude.toFixed(3)
-
+       let latitude = JSON.parse(XHR.responseText).latitude.toFixed(3)
+       let longitude = JSON.parse(XHR.responseText).longitude.toFixed(3)
+  //     let latitude= 1
+  //  let longitude= 1
         loc.innerHTML = "ISS is now located at: latitude: " + latitude + ", " + "longitude: " + longitude;
 
         location = {
@@ -100,10 +102,17 @@ function totalCrew() {
         $(".people").text("Total amount: " + data['number'] + " people!")
         $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>') 
       }) 
+
+  //       updatePeople(peopleISS, marker)
+  // setInterval(() => {
+  //   updatePeople(peopleISS, marker)
+  // }, 5000)
+      
+      
       setTimeout(function(){
         $(".person").remove()
-      }, 5000);   
-      setTimeout("totalCrew();", 5000)
+      }, 10000);   
+      setTimeout("totalCrew();", 10000)
     }
   });
 }
