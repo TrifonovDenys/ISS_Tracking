@@ -93,14 +93,22 @@ function getISSLocation() {
 //     $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>');
 //   })
 // });
+let countIssPeople = 0
+let a
+let b
 function totalCrew() {
   $.ajax({
     url: "http://api.open-notify.org/astros.json",
     context: document.body,
     success: function (data) {
       $.each(data.people, function () {
-        $(".people").text("Total amount: " + data['number'] + " people!")
-        $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>') 
+        
+        if (this.craft === 'ISS'){
+          
+        // $(".people").text("Total amount: " + data['number'] + " people!")
+        a = $(".people").text("Total amount: " + countIssPeople++ + " people!")
+        b = $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>') 
+        }
       }) 
 
   //       updatePeople(peopleISS, marker)
@@ -109,12 +117,14 @@ function totalCrew() {
   // }, 5000)
       
       
-      setTimeout(function(){
-        $(".person").remove()
-      }, 10000);   
-      setTimeout("totalCrew();", 10000)
+      // setInterval(function(){
+      //   $(".person").remove()
+      // }, 3000);   
+      // setInterval("totalCrew();", 3000)
     }
   });
 }
  totalCrew();
+
+setInterval("totalCrew();", 3000);
 // был еще 1 вариант с перезаписью данных в существующие блоки, но мне показалось с динамически создаваемыми будет лучше,так как их создание зависит от количества экипажа.
