@@ -1,3 +1,4 @@
+`use strict`
 obj_hours = document.getElementById("hours");
 
 name_month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");

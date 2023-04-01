@@ -1,3 +1,4 @@
+`use strict`
 let loc = document.getElementById('out');
 //Initialize google map and update every 5 seconds with new location
 function initMap() {
@@ -9,7 +10,7 @@ function initMap() {
 
   var marker = new google.maps.Marker({
     map: map,
-    title: "Международная Космическая Станция (МКС)\nдвижется по земной орбите со скоростью 27700 км/ч.\nТочное расположение находится в верхнем левом блоке на станице,\nэкипаж в правом нижнем блоке.\nОбновление положения МКС и экипажа каждые 5 секунд.",
+    title: "[1]",
     icon: {
       url: "http://www.i2clipart.com/cliparts/9/1/8/b/clipart-international-space-station-918b.png",
       scaledSize: {
@@ -30,10 +31,11 @@ function initMap() {
 
   // Get current location. Returns a promise
   function updateMap(map, marker) {
-    getISSLocation()
+    getISSLocation(marker)
       .then((location) => {
         map.setCenter(location)
         marker.setPosition(location)
+
       })
   }
 }
@@ -42,14 +44,14 @@ function initMap() {
 function fetchAPI() {
   const adress = "https://maps.googleapis.com/maps/api/js?key="
   // const apiKey = "AIzaSyBRamfMG3mZVAQ_dnzqj6adZxg5zn4Tfy4"
-  const apiKey = "AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao"
+  // const apiKey = "AIzaSyAcHyOLl19OFu7om8g3R6mgFUWFl-T4OVw"
   const callbackToGoogle = "&callback=initMap"
   return adress + apiKey + callbackToGoogle
 }
 
 
 // Get location of International space station
-function getISSLocation() {
+function getISSLocation(marker) {
 
   return new Promise((resolve, reject) => {
     let XHR = new XMLHttpRequest()
@@ -65,6 +67,8 @@ function getISSLocation() {
   //     let latitude= 1
   //  let longitude= 1
         loc.innerHTML = "ISS is now located at: latitude: " + latitude + ", " + "longitude: " + longitude;
+        marker.title = `ISS is now located at: latitude: ${latitude}, longitude: ${longitude}`
+
 
         location = {
           lat: Number(latitude),
@@ -93,38 +97,58 @@ function getISSLocation() {
 //     $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>');
 //   })
 // });
-let countIssPeople = 0
-let a
-let b
+function initHtml()
+{
+  $.ajax
+    (
+      {
+        url: "http://api.open-notify.org/astros.json",
+        context: document.body,
+        success: function (data)
+        {
+          let countIssPeople = 0
+          let parentdiv = document.querySelector(`.name`)
+          
+          $.each(data.people, function ()
+          {
+            // if (this.craft === 'ISS')
+            // {
+              let newdiv = document.createElement(`div`)
+              newdiv.className = `person person${++countIssPeople}`
+              if (parentdiv !== null) {
+              parentdiv.append(newdiv)
+            }
+              // $('.name').append(`<div class="person person${++countIssPeople}"></div>`)
+            // }
+          })
+        }
+      }
+    )
+}
+
 function totalCrew() {
   $.ajax({
     url: "http://api.open-notify.org/astros.json",
     context: document.body,
     success: function (data) {
+      let countIssPeople = 0
+
       $.each(data.people, function () {
         
-        if (this.craft === 'ISS'){
-          
-        // $(".people").text("Total amount: " + data['number'] + " people!")
-        a = $(".people").text("Total amount: " + countIssPeople++ + " people!")
-        b = $('.name').append('<div class="person">' + this.name + " " + '<span>' + this.craft + '</span>' + '</div>') 
-        }
+        // if (this.craft === 'ISS'){
+        $(".people").text("Total amount: " + ++countIssPeople + " people!")
+          let element = document.querySelector(`.person${countIssPeople}`)
+          console.log(element);
+          if (element !== null) {
+            element.innerHTML = `${this.name} <span> ${this.craft} </span>`
+          }
+        // }
       }) 
-
-  //       updatePeople(peopleISS, marker)
-  // setInterval(() => {
-  //   updatePeople(peopleISS, marker)
-  // }, 5000)
-      
-      
-      // setInterval(function(){
-      //   $(".person").remove()
-      // }, 3000);   
-      // setInterval("totalCrew();", 3000)
     }
   });
 }
- totalCrew();
+initHtml()
+totalCrew();
 
-setInterval("totalCrew();", 3000);
+setInterval("totalCrew();", 3000);  
 // был еще 1 вариант с перезаписью данных в существующие блоки, но мне показалось с динамически создаваемыми будет лучше,так как их создание зависит от количества экипажа.
