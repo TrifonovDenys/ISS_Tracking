@@ -8,11 +8,12 @@ body{
   height: 100%;
 }
 #map {
-  height: 550px;
+  height: 88vh;
   width: 65%;
   padding: 30px;
   border: 1px solid rgb(165, 161, 154);
   border-radius: 10px
+
 }
 
 .info {
@@ -35,7 +36,7 @@ body{
 #hours {
   border: 1px solid rgb(165, 161, 154);
   border-radius: 10px;
-  width: 450px;
+  width: 34%;
   padding: 10px 5px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -67,7 +68,7 @@ body{
 .name {
   padding: 40px 10px 10px 10px;
   border: 1px solid rgb(165, 161, 154);
-  width: 450px;
+  width: 34%;
   height: 88vh;
   overflow-y: auto;
   border-radius: 10px;

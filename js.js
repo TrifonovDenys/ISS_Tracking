@@ -111,15 +111,15 @@ function initHtml()
           
           $.each(data.people, function ()
           {
-            // if (this.craft === 'ISS')
-            // {
+            if (this.craft === 'ISS')
+            {
               let newdiv = document.createElement(`div`)
               newdiv.className = `person person${++countIssPeople}`
               if (parentdiv !== null) {
               parentdiv.append(newdiv)
             }
               // $('.name').append(`<div class="person person${++countIssPeople}"></div>`)
-            // }
+            }
           })
         }
       }
@@ -135,14 +135,14 @@ function totalCrew() {
 
       $.each(data.people, function () {
         
-        // if (this.craft === 'ISS'){
+        if (this.craft === 'ISS'){
         $(".people").text("Total amount: " + ++countIssPeople + " people!")
           let element = document.querySelector(`.person${countIssPeople}`)
           console.log(element);
           if (element !== null) {
             element.innerHTML = `${this.name} <span> ${this.craft} </span>`
           }
-        // }
+        }
       }) 
     }
   });
